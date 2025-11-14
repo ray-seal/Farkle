@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Online multiplayer Farkle dice game with solo and multiplayer modes">
+    <meta name="theme-color" content="#667eea">
+    <meta name="keywords" content="farkle, dice game, multiplayer game, pwa, progressive web app, online game">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Farkle Game - Online Multiplayer">
+    <meta property="og:description" content="Play Farkle online! Classic dice game with solo and multiplayer modes. Install as an app on any device.">
+    <meta property="og:image" content="/icons/icon-512x512.png">
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary">
+    <meta property="twitter:title" content="Farkle Game - Online Multiplayer">
+    <meta property="twitter:description" content="Play Farkle online! Classic dice game with solo and multiplayer modes.">
+    <meta property="twitter:image" content="/icons/icon-512x512.png">
+    
+    <title>Farkle Game - Online Multiplayer</title>
+    
+    <!-- PWA Configuration -->
+    <link rel="manifest" href="/manifest.json">
+    <link rel="apple-touch-icon" href="/icons/icon-192x192.png">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Farkle">
+    
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Farkle Game</h1>
+        
+        <!-- Game Mode Selection -->
+        <div id="modeSelection" class="mode-selection">
+            <h2>Select Game Mode</h2>
+            <button onclick="startSoloGame()">Solo Game</button>
+            <button onclick="showPlayerSelection()">Multiplayer Game</button>
+        </div>
+
+        <!-- Player Selection for Multiplayer -->
+        <div id="playerSelection" class="player-selection" style="display: none;">
+            <h2>Select Number of Players</h2>
+            <label>
+                Number of Players:
+                <input type="number" id="numPlayers" min="2" max="6" value="2">
+            </label>
+            <button onclick="startMultiplayerGame()">Start Game</button>
+            <button onclick="backToModeSelection()">Back</button>
+        </div>
+
+        <!-- Game Board -->
+        <div id="gameBoard" class="game-board" style="display: none;">
+            <div class="game-header">
+                <h2 id="currentPlayerDisplay"></h2>
+                <button onclick="backToModeSelection()" class="back-button">New Game</button>
+            </div>
+
+            <div class="game-content">
+                <!-- Dice Area -->
+                <div class="dice-area">
+                    <h3>Dice</h3>
+                    <div id="diceContainer" class="dice-container"></div>
+                    <div class="dice-controls">
+                        <button id="rollButton" onclick="rollDice()">Roll Dice</button>
+                        <button id="bankButton" onclick="bankPoints()" disabled>Bank Points</button>
+                        <div class="turn-info">
+                            <p>Turn Score: <span id="turnScore">0</span></p>
+                            <p>Rolls This Turn: <span id="rollCount">0</span></p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Score Board -->
+                <div class="score-board">
+                    <h3>Score Sheet</h3>
+                    <div id="scoreTable" class="score-table"></div>
+                </div>
+            </div>
+
+            <!-- Game Messages -->
+            <div id="gameMessage" class="game-message"></div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
